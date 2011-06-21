@@ -56,30 +56,30 @@ class Application_Model_ProdutoMapper
 		$produto = new Application_Model_Produto();
 	
 		$produto->setId($dados->id)
-		          ->setNome($dados->nome)
-				  ->setPreco($dados->preco)
-		          ->setCriticidade($dados->criticidade)
-		          ->setEstoque($dados->estoque)
-		          ->setFornecedor($dados->fornecedor);
+			->setNome($dados->nome)
+			->setPreco($dados->preco)
+			->setCriticidade($dados->criticidade)
+			->setEstoque($dados->estoque)
+			->setFornecedor($dados->fornecedor);
 		
 		return $produto;
 	}
    	
 	public function obterTodos()
 	{
-	    $conjDados = $this->getDbTable()->fetchAll();
+		$conjDados = $this->getDbTable()->fetchAll();
 		$produtos   = array();
 
 		foreach ($conjDados as $dado) {
-		    $produto = new Application_Model_Produto(array());
-		    $produto->setId($dado->id)
-		          ->setNome($dado->nome)
-		          ->setPreco($dado->preco)
-		          ->setCriticidade($dado->criticidade)
-		          ->setEstoque($dado->estoque)
-		          ->setFornecedor($dado->fornecedor);
-	          
-		    $produtos[] = $produto;
+			$produto = new Application_Model_Produto(array());
+			$produto->setId($dado->id)
+				->setNome($dado->nome)
+				->setPreco($dado->preco)
+				->setCriticidade($dado->criticidade)
+				->setEstoque($dado->estoque)
+				->setFornecedor($dado->fornecedor);
+				
+			$produtos[] = $produto;
 		}
 		return $produtos;
 	}

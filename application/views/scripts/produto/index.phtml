@@ -16,7 +16,7 @@ Produtos cadastrados: <br />
 	</dt>
     <dd>Preço: <?php echo $this->escape($produto->getPreco()) ?></dd>
     <dd>Qtd: <?php echo $this->escape($produto->getEstoque()) ?></dd>
-    <dd>Importância: <?php echo $this->escape($produto->getCriticidade()) ?></dd>
+    <dd>Nivel crítico: <?php echo $this->escape($produto->getCriticidade()) ?></dd>
     <dd>Fornecedor: <?php echo $this->escape($produto->getFornecedor()) ?></dd>
     <?php endforeach ?>
 </dl>
