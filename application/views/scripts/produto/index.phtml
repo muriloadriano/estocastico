@@ -1,0 +1,22 @@
+<p><a href="<?php echo $this->url(
+    array(
+        'controller' => 'produto',
+        'action'     => 'adicionar'
+    ),
+    'default',
+    true) ?>">Adicionar um novo produto</a></p>
+ 
+Produtos cadastrados: <br />
+<dl>
+    <?php foreach ($this->produtos as $produto): ?>
+	<dt>Nome: 
+		<a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'editar', 'id' => $produto->getId())); ?>">
+			<?php echo $this->escape($produto->getNome()) ?>
+		</a>
+	</dt>
+    <dd>Preço: <?php echo $this->escape($produto->getPreco()) ?></dd>
+    <dd>Qtd: <?php echo $this->escape($produto->getEstoque()) ?></dd>
+    <dd>Importância: <?php echo $this->escape($produto->getCriticidade()) ?></dd>
+    <dd>Fornecedor: <?php echo $this->escape($produto->getFornecedor()) ?></dd>
+    <?php endforeach ?>
+</dl>
