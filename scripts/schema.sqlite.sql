@@ -21,7 +21,8 @@ CREATE TABLE usuarios
 	insercao DATETIME NOT NULL,
 	ultimaAltenticacao DATETIME,
 	senha VARCHAR(50),
-	nomeUsuario VARCHAR(100)
+	nomeUsuario VARCHAR(100),
+	ultimaAtividade DATETIME
 );
 
 CREATE INDEX "idusuario" ON "usuarios" ("id");

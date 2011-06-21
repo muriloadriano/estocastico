@@ -6,5 +6,5 @@ INSERT INTO produtos (nome, preco, criticidade, estoque, fornecedor) VALUES ('Te
 INSERT INTO produtos (nome, preco, criticidade, estoque, fornecedor) VALUES ('Mouse Optico', '53.00', '1', '10', 'Logitech');
 
 -- Preenche a tabela usuarios com alguns dados de exemplo
-INSERT INTO usuarios (nome, dataNascimento, insercao, senha, nomeUsuario) VALUES ('João da Silva', '1985-11-10', DATETIME('NOW'), 'xyz', 'jsilva');
-INSERT INTO usuarios (nome, dataNascimento, insercao, senha, nomeUsuario) VALUES ('Ana Júlia', '1988-05-03', DATETIME('NOW'), '1234', 'anajulia');
+INSERT INTO usuarios (nome, dataNascimento, insercao, senha, nomeUsuario, ultimaAtividade) VALUES ('João da Silva', '1985-11-10', DATETIME('NOW'), 'xyz', 'jsilva', DATETIME('NOW'));
+INSERT INTO usuarios (nome, dataNascimento, insercao, senha, nomeUsuario, ultimaAtividade) VALUES ('Ana Júlia', '1988-05-03', DATETIME('NOW'), '1234', 'anajulia', DATETIME('NOW'));

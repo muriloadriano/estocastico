@@ -1,0 +1,24 @@
+<h3>Gerência de Usuários</h3>
+
+<p><a href="<?php echo $this->url(
+    array(
+        'controller' => 'usuario',
+        'action'     => 'adicionar'
+    ),
+    'default',
+    true) ?>">Adicionar um novo usuário</a></p>
+ 
+Usuários cadastrados: <br />
+<dl>
+    <?php foreach ($this->usuarios as $usuario): ?>
+	<dt>Nome: 
+		<a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'editar', 'id' => $usuario->getId())); ?>">
+			<?php echo $this->escape($usuario->getNome()) ?>
+		</a>
+	</dt>
+    <dd>Nome de Usuário: <?php echo $this->escape($usuario->getNomeUsuario()) ?></dd>
+    <dd>Data de Inserção: <?php echo $this->escape($usuario->getInsercao()) ?></dd>
+    <dd>Data de Nascimento: <?php echo $this->escape($usuario->getDataNascimento()) ?></dd>
+    <dd>Última Atividade: <?php echo $this->escape($usuario->getUltimaAtividade()) ?></dd>
+    <?php endforeach ?>
+</dl>
