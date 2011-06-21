@@ -13,8 +13,8 @@ Produtos cadastrados: <br />
     <?php foreach ($this->produtos as $produto): ?>
 	<dt>Nome: 
 		<a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'editar', 'id' => $produto->getId())); ?>">
-			<?php echo $this->escape($produto->getNome()) ?>
-		</a>
+			<?php echo $this->escape($produto->getNome()) ?></a>
+		(<a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'excluir', 'id' => $produto->getId())); ?>">excluir</a>)
 	</dt>
     <dd>Preço: <?php echo $this->escape($produto->getPreco()) ?></dd>
     <dd>Qtd: <?php echo $this->escape($produto->getEstoque()) ?></dd>

@@ -110,6 +110,13 @@ class Application_Model_ProdutoMapper
 		
 		return $criticos;
 	}
+	
+	public function excluir($id)
+	{
+		$tabela = $this->getDbTable();
+		$where = $tabela->getAdapter()->quoteInto('id = ?', $id);
+		$tabela->delete($where);
+	}
 }
 
 

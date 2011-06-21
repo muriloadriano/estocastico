@@ -8,6 +8,7 @@ class ProdutoController extends Zend_Controller_Action
 		if (!Zend_Auth::getInstance()->hasIdentity()) {
 			return $this->_helper->redirector('index', 'index');
 		}
+		
     }
 
     public function indexAction()
@@ -68,8 +69,32 @@ class ProdutoController extends Zend_Controller_Action
 		}
     }
 
+    public function excluirAction()
+    {
+        $idProduto = $this->getRequest()->getParam('id');
+		if (!is_numeric($idProduto)) return $this->_helper->redirector('index');
+    
+		$mapper = new Application_Model_ProdutoMapper();
+		$produto = $mapper->obterPorId($idProduto);
+		
+		if ($produto == null) return $this->_helper->redirector('index');
+		
+		$opcao = $this->getRequest()->getParam('opcao');
+		
+		if (!empty($opcao)) {
+			if ($opcao == 'sim') {
+				$mapper->excluir($idProduto);
+			}
+			return $this->_helper->redirector('index');
+		}
+		
+		$this->view->produto = $produto;
+	}
+
 
 }
+
+
 
 
 
