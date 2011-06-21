@@ -13,8 +13,8 @@ Usuários cadastrados: <br />
     <?php foreach ($this->usuarios as $usuario): ?>
 	<dt>Nome: 
 		<a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'editar', 'id' => $usuario->getId())); ?>">
-			<?php echo $this->escape($usuario->getNome()) ?>
-		</a>
+			<?php echo $this->escape($usuario->getNome()) ?></a>
+		(<a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'excluir', 'id' => $usuario->getId())); ?>">excluir</a>)
 	</dt>
     <dd>Nome de Usuário: <?php echo $this->escape($usuario->getNomeUsuario()) ?></dd>
     <dd>Data de Inserção: <?php echo $this->escape($usuario->getInsercao()) ?></dd>

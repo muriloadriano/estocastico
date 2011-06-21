@@ -7,7 +7,7 @@ class Application_Form_Usuario extends Zend_Form
 
 	public function __construct($usuario = array())
 	{
-		// Verifica o parâmetro passado e monta o array $_arrCampos
+		// Verifica se o parâmetro passado é válido
 		if ($usuario instanceof Application_Model_Usuario) {
 			$this->_usuario = $usuario;
 		}
@@ -25,7 +25,7 @@ class Application_Form_Usuario extends Zend_Form
         $this->setMethod('post');
 		
 		// Se estiver no modo de edição, diciona o elemento id
-		$edicao = !!$this->usuário->getId();
+		$edicao = !!$this->_usuario->getId();
 		
 		if ($edicao) {
 			$this->addElement('text', 'id', array(
@@ -33,11 +33,17 @@ class Application_Form_Usuario extends Zend_Form
 					'value'    => $this->_usuario->getId(),
 					'readonly' => 'readonly'
 			));
+			
+			$insercao = $this->_usuario->getInsercao();
 		}
+		else $insercao = date('Y-m-d H:i:s');
+		
+		// Adiciona o campo oculto inserção
+		$this->addElement('hidden', 'insercao', array('value' => $insercao));
 
-		// Adiciona o campo de nome do usuario
+		// Adiciona o campo de nome
         $this->addElement('text', 'nome', array(
-			'label'      => 'Nome do usuario:',
+			'label'      => 'Nome:',
 			'required'   => true,
 			'filters'    => array('StringTrim'),
 			'validators' => array(
@@ -46,51 +52,41 @@ class Application_Form_Usuario extends Zend_Form
 			'value'    => $this->_usuario->getNome()
         ));
 
-        // Adiciona o elemento preço
-		$this->addElement('text', 'preco', array(
-			'label'      => 'Preço:',
+        // Adiciona o elemento de nome de usuário (login)
+		$this->addElement('text', 'nomeUsuario', array(
+			'label'      => 'Login:',
 			'required'   => true,
+			'filters'    => array('StringTrim'),
 			'validators' => array(
-				array('validator' => 'Float', 'options' => array('locale' => 'br'))
+				array('validator' => 'StringLength', 'options' => array(5, 100))
 			),
-			'value'    => $this->_usuario->getPreco()
+			'value'     => $this->_usuario->getNomeUsuario()
         ));
 
-        // Adiciona o elemento estoque
-		$this->addElement('text', 'estoque', array(
- 			'label'      => 'Quantidade em estoque:',
+		// Adiciona o elemento de senha
+		$this->addElement('password', 'senha', array(
+			'label'      => 'Senha:',
 			'required'   => true,
 			'validators' => array(
-				array('validator' => 'GreaterThan', 'options' => array('min' => 0))
+				array('validator' => 'StringLength', 'options' => array(5, 50))
 			),
-			'value'    => $this->_usuario->getEstoque()
-        ));
-
-		// Adiciona o elemento criticidade
-		$this->addElement('text', 'criticidade', array(
-            'label'      => 'Nível crítico:',
-			'required'   => true,
+			'value'    => $this->_usuario->getSenha()
+	    ));
+		
+		// Adiciona o elemento de senha
+		$this->addElement('text', 'dataNascimento', array(
+			'label'      => 'Data de Nascimento (dia/mês/ano):',
+			'required'   => false,
 			'validators' => array(
-				array('validator' => 'GreaterThan', 'options' => array('min' => 0))
+				array('validator' => 'Date', 'options' => array('format' => 'd/m/Y'))
 			),
-			'value'    => $this->_usuario->getCriticidade()
-		));
-
-		// Adiciona o elemento fornecedor
-		$this->addElement('text', 'fornecedor', array(
-            'label'      => 'Fornecedor:',
-            'required'   => true,
-            'filters'    => array('StringTrim'),
-            'validators' => array(
-                array('validator' => 'StringLength', 'options' => array(5, 250))
-            ),
-			'value'    => $this->_usuario->getFornecedor()
-		));
+			'value'    => ($edicao ? date('d/m/Y', strtotime($this->_usuario->getDataNascimento())) : '')
+	    ));
 
         // Adiciona o botão de envio
 		$this->addElement('submit', 'submit', array(
             'ignore'   => true,
-            'label'    => ($edicao ? 'Salvar alterações' : 'Cadastrar usuario'),
+            'label'    => ($edicao ? 'Salvar alterações' : 'Cadastrar usuário'),
 		));
 
         // Proteção CSRF

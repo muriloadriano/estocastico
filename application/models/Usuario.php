@@ -73,12 +73,13 @@ class Application_Model_Usuario
 		$this->_insercao = $insercao;
 		return $this;
 	}
+	
 	public function getUltimaAtividade()
 	{
 		return $this->_ultimaAtividade;
 	}
 	
-	public function setUltimaAtividade()
+	public function setUltimaAtividade($ultimaAtividade)
 	{
 		$this->_ultimaAtividade = $ultimaAtividade;
 		return $this;

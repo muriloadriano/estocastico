@@ -1,0 +1,19 @@
+<br /><br />
+<div id="view-content">
+	<h2>Adicionar Usuário</h2>
+	<?php
+		if (!empty($this->erro)) :
+	?>
+	<div id="erro">
+		<p>Não foi possível adicionar o usuário. Motivo:</p>
+		<p><?php echo $this->erro;?></p>
+	</div>
+	<?php endif; ?>
+	
+	<div id="formulario">
+		<?php
+			$this->formulario->setAction($this->url());
+			echo $this->formulario;
+		?>
+	</div>
+</div>

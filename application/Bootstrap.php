@@ -20,6 +20,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		
 		return $loader;
 	}
+	
+	protected function _initTimezone()
+	{
+		date_default_timezone_set('America/Sao_Paulo');
+	}
 
 }
 

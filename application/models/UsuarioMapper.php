@@ -34,12 +34,13 @@ class Application_Model_UsuarioMapper
 			'senha' => $produto->getSenha(),
 			'insercao' => $produto->getInsercao(),
 			'ultimaAtividade' => $produto->getUltimaAtividade(),
-			'dataNascimento' => $produto->getDataNascimentos()
+			'dataNascimento' => $produto->getDataNascimento()
 		);
 
 		if (null === ($id = $produto->getId())) {
 			unset($dados['id']);
-			$dados['insercao'] = date('Y-m-d h:i:s');
+			$dados['insercao'] = date('Y-m-d H:i:s');
+			$dados['ultimaAtividade'] = date('Y-m-d H:i:s');
 			
 			$this->getDbTable()->insert($dados);
 		} 
@@ -52,6 +53,32 @@ class Application_Model_UsuarioMapper
    	{
    		$resultado = $this->getDbTable()->find($id);
    		
+		if (count($resultado) == 0) return null;
+	
+		$dados = $resultado->current();
+	
+		$usuario = new Application_Model_Usuario();
+	
+		$usuario->setId($dados->id)
+			->setNomeUsuario($dados->nomeUsuario)
+			->setNome($dados->nome)
+			->setSenha($dados->senha)
+			->setInsercao($dados->insercao)
+			->setUltimaAtividade($dados->ultimaAtividade)
+			->setDataNascimento($dados->dataNascimento);
+		
+		return $usuario;
+	}
+	
+	public function obterPorNomeUsuario($nomeUsuario)
+	{
+		$tabela = $this->getDbTable();
+		
+		$select = $tabela->select();
+		$select->where('nomeUsuario = ?', $nomeUsuario);
+
+   		$resultado = $tabela->fetchAll($select);
+
 		if (count($resultado) == 0) return null;
 	
 		$dados = $resultado->current();
@@ -87,6 +114,13 @@ class Application_Model_UsuarioMapper
 			$usuarios[] = $usuario;
 		}
 		return $usuarios;
+	}
+	
+	public function excluir($id)
+	{
+		$tabela = $this->getDbTable();
+		$where = $tabela->getAdapter()->quoteInto('id = ?', $id);
+		$tabela->delete($where);
 	}
 
 }
