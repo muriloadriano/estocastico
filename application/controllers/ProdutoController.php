@@ -5,12 +5,17 @@ class ProdutoController extends Zend_Controller_Action
 
     public function init()
     {
+		if (!Zend_Auth::getInstance()->hasIdentity()) {
+			return $this->_helper->redirector('index', 'index');
+		}
     }
 
     public function indexAction()
     {
         $produtos = new Application_Model_ProdutoMapper();
         $this->view->produtos = $produtos->obterTodos();
+
+		$this->view->criticos = $produtos->obterCriticos();
     }
 
     public function adicionarAction()

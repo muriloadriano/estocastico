@@ -95,6 +95,19 @@ class Application_Model_UsuarioMapper
 		
 		return $usuario;
 	}
+	
+	public function checarUsuarioSenha($nomeUsuario, $senha)
+	{
+		$tabela = $this->getDbTable();
+		
+		$select = $tabela->select();
+		$select->where('nomeUsuario = ?', $nomeUsuario);
+		$select->where('senha = ?', $senha);
+
+   		$resultado = $tabela->fetchAll($select);
+		
+		return count($resultado) != 0;
+	}
    	
 	public function obterTodos()
 	{

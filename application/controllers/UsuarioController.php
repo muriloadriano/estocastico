@@ -7,6 +7,10 @@ class UsuarioController extends Zend_Controller_Action
 
     public function init()
     {
+		if (!Zend_Auth::getInstance()->hasIdentity()) {
+			return $this->_helper->redirector('index', 'index');
+		}
+	
 		$this->_erros['usuarioExistente'] = 'Já existe um usuário com o login ';
     }
 
@@ -62,18 +66,12 @@ class UsuarioController extends Zend_Controller_Action
 			if ($formulario->isValid($requisicao->getPost())) {
 				$usuario = new Application_Model_Usuario($formulario->getValues());
 				$mapper  = new Application_Model_UsuarioMapper();
-				
-				if ($mapper->obterPorNomeUsuario($usuario->getNomeUsuario()) != null) {
-					$this->view->erro = $this->_erros['usuarioExistente'] . $usuario->getNomeUsuario() . '.';
-				}
-				else {
-					$mapper->salvar($usuario);
-					return $this->_helper->redirector('index');
-				}
+				$mapper->salvar($usuario);
+				return $this->_helper->redirector('index');
 			}
+			
+			$this->view->formulario = $formulario;
 		}
-		
-		$this->view->formulario = $formulario;
     }
 	
 	public function excluirAction()

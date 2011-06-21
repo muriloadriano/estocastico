@@ -83,6 +83,33 @@ class Application_Model_ProdutoMapper
 		}
 		return $produtos;
 	}
+	
+	public function obterCriticos()
+	{
+		$tabela = $this->getDbTable();
+		
+		$select = $tabela->select();
+		$select->where('criticidade >= estoque');
+
+   		$resultado = $tabela->fetchAll($select);
+
+		if (count($resultado) == 0) return null;
+		
+		$criticos = array();
+		foreach ($resultado as $dado) {
+				$produto = new Application_Model_Produto(array());
+				$produto->setId($dado->id)
+					->setNome($dado->nome)
+					->setPreco($dado->preco)
+					->setCriticidade($dado->criticidade)
+					->setEstoque($dado->estoque)
+					->setFornecedor($dado->fornecedor);
+
+				$criticos[] = $produto;
+		}
+		
+		return $criticos;
+	}
 }
 
 

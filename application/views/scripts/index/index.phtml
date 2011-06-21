@@ -1,9 +1,14 @@
 <div id="welcome">
     <h1>Bem-vindo ao Estocástico</h1>
 
+	<?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
+	<!-- Usuário Logado-->
     <h3>Ações</h3>
 	<ul>
 		<li><a href="<?= $this->url(array('controller' => 'produto')) ?>">Gerenciar Produtos</a></li>
 		<li><a href="<?= $this->url(array('controller' => 'usuario')) ?>">Gerenciar Usuários</a></li>
 	</ul>
+	<?php else : ?>
+	<div id="login">Faça o login para ter acesso ao controle de estoque</div>
+	<?php endif; s?>
 </div>

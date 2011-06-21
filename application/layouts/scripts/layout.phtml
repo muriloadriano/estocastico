@@ -13,7 +13,12 @@
 	</div>
 	
 	<div id="header-navigation" style="float: right">
-    	<a href="<?php echo $this->url(array('controller' => 'index')) ?>">Início</a>
+    	<a href="<?php echo $this->url(array('controller' => 'index'), 'default', true) ?>">Início</a>
+		<?php if ($this->nomeUsuario == null) : ?>
+		<a href="<?php echo $this->url(array('controller' => 'login'), 'default', true) ?>">Login</a>
+		<?php else : ?>
+		<a href="<?php echo $this->url(array('controller' => 'login', 'action' => 'logout'), 'default', true) ?>">Logout</a> (<?php echo $this->nomeUsuario; ?>)
+		<?php endif; ?>
 	</div>
 </div>
 

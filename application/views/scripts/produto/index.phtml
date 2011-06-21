@@ -22,3 +22,15 @@ Produtos cadastrados: <br />
     <dd>Fornecedor: <?php echo $this->escape($produto->getFornecedor()) ?></dd>
     <?php endforeach ?>
 </dl>
+
+<?php if ($this->criticos != null) : ?>
+	<div id="atencao">
+		<p style="color:red;">Atenção: os <?php echo count($this->criticos) ?> produtos seguintes estão em nível crítico:</p>
+		
+		<ul>
+		<?php foreach ($this->criticos as $produto): ?>
+			<li class="critico"><?php echo $produto->getNome() . ' - Quantidade: ' . $produto->getEstoque() . ', Nível Crítico: ' . $produto->getCriticidade() ?></li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
+<?php endif; ?>

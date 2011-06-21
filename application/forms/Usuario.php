@@ -53,18 +53,24 @@ class Application_Form_Usuario extends Zend_Form
         ));
 
         // Adiciona o elemento de nome de usuário (login)
-		$this->addElement('text', 'nomeUsuario', array(
+
+		$opcoes = array(
 			'label'      => 'Login:',
 			'required'   => true,
 			'filters'    => array('StringTrim'),
 			'validators' => array(
-				array('validator' => 'StringLength', 'options' => array(5, 100))
+				array('validator' => 'StringLength', 'options' => array(5, 100),
+					'Alpha')
 			),
 			'value'     => $this->_usuario->getNomeUsuario()
-        ));
+		);
+		
+		if ($edicao) $opcoes['readonly'] = 'readonly';
+		
+		$this->addElement('text', 'nomeUsuario', $opcoes);
 
 		// Adiciona o elemento de senha
-		$this->addElement('password', 'senha', array(
+		$this->addElement('text', 'senha', array(
 			'label'      => 'Senha:',
 			'required'   => true,
 			'validators' => array(
