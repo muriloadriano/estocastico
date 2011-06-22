@@ -84,7 +84,7 @@ class Application_Form_Usuario extends Zend_Form
 			'label'      => 'Data de Nascimento (dia/mês/ano):',
 			'required'   => false,
 			'validators' => array(
-				array('validator' => 'Date', 'options' => array('format' => 'd/m/Y'))
+				array('validator' => 'Date', 'options' => array('format' => 'dd/MM/yyyy', 'locale' => 'pt-BR'))
 			),
 			'value'    => ($edicao ? date('d/m/Y', strtotime($this->_usuario->getDataNascimento())) : '')
 	    ));

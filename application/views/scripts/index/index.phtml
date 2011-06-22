@@ -4,11 +4,11 @@
 	<?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
 	<!-- Usuário Logado-->
     <h3>Ações</h3>
-	<ul>
+	<ul id="acoes">
 		<li><a href="<?= $this->url(array('controller' => 'produto')) ?>">Gerenciar Produtos</a></li>
 		<li><a href="<?= $this->url(array('controller' => 'usuario')) ?>">Gerenciar Usuários</a></li>
 	</ul>
 	<?php else : ?>
 	<div id="login">Faça o login para ter acesso ao controle de estoque</div>
-	<?php endif; s?>
+	<?php endif; ?>
 </div>

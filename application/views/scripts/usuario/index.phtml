@@ -1,24 +1,35 @@
 <h3>Gerência de Usuários</h3>
-
-<p><a href="<?php echo $this->url(
-    array(
-        'controller' => 'usuario',
-        'action'     => 'adicionar'
-    ),
-    'default',
-    true) ?>">Adicionar um novo usuário</a></p>
- 
-Usuários cadastrados: <br />
-<dl>
-    <?php foreach ($this->usuarios as $usuario): ?>
-	<dt>Nome: 
-		<a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'editar', 'id' => $usuario->getId())); ?>">
-			<?php echo $this->escape($usuario->getNome()) ?></a>
-		(<a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'excluir', 'id' => $usuario->getId())); ?>">excluir</a>)
-	</dt>
-    <dd>Nome de Usuário: <?php echo $this->escape($usuario->getNomeUsuario()) ?></dd>
-    <dd>Data de Inserção: <?php echo $this->escape($usuario->getInsercao()) ?></dd>
-    <dd>Data de Nascimento: <?php echo $this->escape($usuario->getDataNascimento()) ?></dd>
-    <dd>Última Atividade: <?php echo $this->escape($usuario->getUltimaAtividade()) ?></dd>
-    <?php endforeach ?>
-</dl>
+<div id="tabela">
+	<table class="listagem">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Login</th>
+				<th>Data de Inserção</th>
+				<th>Data de Nascimento</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($this->usuarios as $usuario): ?>
+			<tr>
+				<td><a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'editar', 'id' => $usuario->getId())); ?>">
+					<?php echo $this->escape($usuario->getNome()) ?></a></td>
+				<td class="centro"><?php echo $this->escape($usuario->getNomeUsuario()) ?></td>
+				<td class="centro"><?php echo $this->escape($usuario->getInsercao()) ?></td>
+				<td class="centro"><?php echo $this->escape($usuario->getDataNascimento()) ?></td>
+				<td class="centro"><a href="<?php echo $this->url(array('controller' => 'usuario', 'action' => 'excluir', 'id' => $usuario->getId())); ?>">X</a></td>
+			</tr>
+			<?php endforeach ?>
+			<tr>
+				<td colspan="7" style="text-align:right"><a href="<?php echo $this->url(
+					array(
+						'controller' => 'usuario',
+						'action'     => 'adicionar'
+					),
+					'default',
+					true) ?>">Adicionar um novo usuário</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

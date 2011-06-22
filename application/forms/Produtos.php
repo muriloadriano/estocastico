@@ -50,7 +50,7 @@ class Application_Form_Produtos extends Zend_Form
 			'label'      => 'Preço:',
 			'required'   => true,
 			'validators' => array(
-				array('validator' => 'Float', 'options' => array('locale' => 'br'))
+				array('validator' => 'Float', 'options' => array('locale' => 'pt-BR'))
 			),
 			'value'    => $this->_produto->getPreco()
         ));

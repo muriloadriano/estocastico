@@ -4,16 +4,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Estocástico :: Controle de Estoque v1.0</title>
-	<?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+	<?php echo $this->headLink()->appendStylesheet('/css/estilos.css') ?>
 </head>
 <body>
-	<div id="header" style="background-color: #EEEEEE; height: 30px;">
+<div id="header">
 	<div id="header-logo" style="float: left">
     		<b>Estocástico - Controle de Estoque</b>
 	</div>
 	
 	<div id="header-navigation" style="float: right">
-    	<a href="<?php echo $this->url(array('controller' => 'index'), 'default', true) ?>">Início</a>
+    	<a href="<?php echo $this->url(array('controller' => 'index'), 'default', true) ?>">Início</a> |
 		<?php if ($this->nomeUsuario == null) : ?>
 		<a href="<?php echo $this->url(array('controller' => 'login'), 'default', true) ?>">Login</a>
 		<?php else : ?>
@@ -24,5 +24,7 @@
 
 <?php echo $this->layout()->content ?>
 
+
+<div id="bottom"><p>Por: Eduardo Lira, Éwerton Araújo, Murilo Vasconcelos e Paulo Costa. Feito utilizando Zend Framework.</p></div>
 </body>
 </html>

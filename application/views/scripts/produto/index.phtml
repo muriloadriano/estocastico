@@ -1,36 +1,52 @@
 <h3>Gerência de Produtos</h3>
 
-<p><a href="<?php echo $this->url(
-    array(
-        'controller' => 'produto',
-        'action'     => 'adicionar'
-    ),
-    'default',
-    true) ?>">Adicionar um novo produto</a></p>
- 
-Produtos cadastrados: <br />
-<dl>
-    <?php foreach ($this->produtos as $produto): ?>
-	<dt>Nome: 
-		<a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'editar', 'id' => $produto->getId())); ?>">
-			<?php echo $this->escape($produto->getNome()) ?></a>
-		(<a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'excluir', 'id' => $produto->getId())); ?>">excluir</a>)
-	</dt>
-    <dd>Preço: <?php echo $this->escape($produto->getPreco()) ?></dd>
-    <dd>Qtd: <?php echo $this->escape($produto->getEstoque()) ?></dd>
-    <dd>Nivel crítico: <?php echo $this->escape($produto->getCriticidade()) ?></dd>
-    <dd>Fornecedor: <?php echo $this->escape($produto->getFornecedor()) ?></dd>
-    <?php endforeach ?>
-</dl>
-
 <?php if ($this->criticos != null) : ?>
-	<div id="atencao">
-		<p style="color:red;">Atenção: os <?php echo count($this->criticos) ?> produtos seguintes estão em nível crítico:</p>
-		
-		<ul>
-		<?php foreach ($this->criticos as $produto): ?>
-			<li class="critico"><?php echo $produto->getNome() . ' - Quantidade: ' . $produto->getEstoque() . ', Nível Crítico: ' . $produto->getCriticidade() ?></li>
-		<?php endforeach; ?>
-		</ul>
-	</div>
+		<h4 class="atencao"><span style="font-size:20px;font-weight:normal;">⚠</span> Atenção: <?php echo count($this->criticos) ?> produtos estão em nível crítico!</h4>
 <?php endif; ?>
+
+<div id="tabela">
+	<table class="listagem">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Preço</th>
+				<th>Quantidade</th>
+				<th>Fornecedor</th>
+				<th>Nível Crítico</th>
+				<th>Situação</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($this->produtos as $produto): ?>
+			<tr>
+				<td><a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'editar', 'id' => $produto->getId())); ?>">
+					<?php echo $this->escape($produto->getNome()) ?></a></td>
+				<td class="dir"><?php echo $this->escape($produto->getPreco()) ?></td>
+				<td class="centro"><?php echo $this->escape($produto->getEstoque()) ?></td>
+				<td><?php echo $this->escape($produto->getFornecedor()) ?></td>
+				<td class="centro"><?php echo $this->escape($produto->getCriticidade()) ?></td>
+				<td class="centro">
+					<?php if ($produto->getCriticidade() >= $produto->getEstoque()) : ?>
+						<span class="critico">Crítico</span>
+					<?php else : ?>
+						<span>Normal</span>
+					<?php endif; ?>
+				</td>
+				<td class="centro"><a href="<?php echo $this->url(array('controller' => 'produto', 'action' => 'excluir', 'id' => $produto->getId())); ?>">X</a></td>
+			</tr>
+		<?php endforeach ?>
+			<tr>
+				<td colspan="7" style="text-align:right"><a href="<?php echo $this->url(
+					array(
+						'controller' => 'produto',
+						'action'     => 'adicionar'
+					),
+					'default',
+					true) ?>">Adicionar um novo produto</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+

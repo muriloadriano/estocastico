@@ -1,0 +1,118 @@
+* {
+	font-family:Verdana, Arial;
+}
+
+body {
+	font-size:13px;
+	margin:10px 20px;
+}
+
+h1, h2, h3 {
+	color:#A3C159;
+}
+
+h3 {
+	font-size:20px;
+}
+
+a, a:link, a:visited {
+	color:blue;
+}
+
+#tabela {
+	width:100%;
+}
+
+.listagem {
+	width:80%;
+	margin:auto;
+	padding:10px;
+}
+
+.listagem * {
+	font-size:15px;
+}
+
+thead {
+	background-color:#A3C159;
+	color:white;
+	text-align:center;
+	line-height:30px;
+}
+
+tbody tr {
+	line-height:20px;
+}
+
+tbody td {
+	padding:3px;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: rgba(230, 230, 230, 0.1);
+}
+
+tbody tr:nth-child(even) {
+	background-color: rgba(210, 210, 210, 0.3);
+}
+
+#header, #bottom {
+	background-color:#A3C159;
+	color:#FFFFFF;
+	height:30px;
+	vertical-align:middle;
+}
+
+#header-logo, #header-navigation {
+	margin:8px 8px;
+}
+
+#header-navigation a, #header-navigation a:link, #header-navigation a:visited {
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+#bottom {
+	background-color:#EEEEEE;
+	color:#AAAAAA;
+	font-weight:bold;
+	text-align:right;
+	margin-top:300px;
+}
+
+#bottom p {
+	margin:8px;
+	line-height:30px;
+}
+
+#acoes li {
+	color:blue;
+	list-style-type:square;
+	line-height:40px;
+}
+
+#acoes li a, #acoes li a:link, #acoes li a:visited {
+	font-size:20px;
+	text-decoration:none;
+}
+
+
+.centro {
+	text-align:center;
+}
+
+.dir {
+	text-align:right;
+}
+
+.atencao, .critico {
+	color:red;
+	font-weight:bold;
+}
+
+.excluir {
+	text-align:center;
+	font-size:15px;
+	margin:auto;
+}
+
